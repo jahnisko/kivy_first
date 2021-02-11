@@ -1,28 +1,28 @@
 import kivy
 from kivy.app import App
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 
-class Touch(Widget):
-    btn = ObjectProperty(None)
+class MainWindow(Screen):
+    pass
 
-    def on_touch_down(self, touch):
-        print("Mouse Down", touch)
-        self.btn.opacity = 0.5
 
-    def on_touch_move(self, touch):
-        print("Mouse Move", touch)
+class SecondWindow(Screen):
+    pass
 
-    def on_touch_up(self, touch):
-        print("Mouse UP", touch)
-        self.btn.opacity = 0.5
-        
 
-class MyApp(App):
+class WindowManager(ScreenManager):
+    pass
+
+
+kv = Builder.load_file("my.kv")
+
+
+class MyMainApp(App):
     def build(self):
-        return Touch()
+        return kv
 
 
 if __name__ == "__main__":
-    MyApp().run()
+    MyMainApp().run()
